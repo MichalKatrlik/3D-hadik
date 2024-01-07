@@ -1,0 +1,4 @@
+Python IDLE 3.10.6   https://docs.python.org/3.10/library/idle.html
+pygame 2.5.2         https://www.pygame.org/news
+numpy  1.25.2	     https://numpy.org/
+PyInstaller 6.3.0    https://pyinstaller.org/

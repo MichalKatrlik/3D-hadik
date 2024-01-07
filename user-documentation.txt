@@ -1,0 +1,23 @@
+3D implementácia hry hadík.
+
+Po spustení pythonového súboru sa zobrazí plocha výberu obtiažnosit.
+
+V ploche výberi obtiažnosti je možné ľavím klikom na jednu z troch obtiažností spustiť samotnú hru.
+
+V ľachkej obtiažnosti je možné kontrolovať hadíka, reprezentovaného červenou kockou, tlačítkami W,A,S,D,Q,E.
+W,A,S,D hýbu hadíka respektívne dopredu, doľava, dozadu a doprava. Q hýbe hadíka dole a E ho hýbe hore.
+Keď sa hadík dostane na pozíciu jedla, zelená kocka, tak sa zväčší. To znamená že chôst, transparentné červené kocky, ktorý za sebou necháva
+bude dlchší o jedna. Čím väčší je hadík na konci hry tým viac bodíkov máte.
+Ak hadík narazí do svôjho chôsta tak hra skončila.
+Hadík sa nemôže pohnúť na pozíciu na ktoréj práve bol.
+Hadík sa môže pohybovať len v rámci veľkej kocky.
+Tlačítkom X je možné zastaviť alebo znova začať rotáciu kocky.
+
+V strednej a ťažškej obtiažnosti je možné kontrolovať hadíka, reprezentovaného červenou kockou, tlačítkami W,A,S,D,Q,E.
+Smer pohybu ktorí tieto tlačítka určujú je rovnaký ako pri ľachkej obtiažnosti ale hadík sa pohybuje každých zopár momentov a tieto tlačítka len menia smer ktorím ide.
+Ďaľšia zmena oproti ľachkej obtiažnosti je že aj náraz do steny ukončuje hru.
+Zároveň je možné stlačiť P pre zastavenie pohybu hadíka.
+
+V každej obtiažnosti je po ukončení hry možné stlačiť tlačítko upozorňujúce na koniec hry. Toto vás presunie do plochy výberu obtiažnosti.
+
+Pre použité zdroje si prosím prečítajte file zdroje.txt
