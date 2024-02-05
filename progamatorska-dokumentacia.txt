@@ -1,0 +1,83 @@
+Program je písaný v Pythone, cely kód je v súbore "kod.py". Využité knižnice sú pygame, math, numpy, random a collections.
+
+Program obsahuje classy:
+
+	Button: Button(text_tlačítka, pygame_plocha_na_ktorú_sa_má_vykresliť, funkcia_na_zavolanie_po_stlačení, pozícia_x, pozícia_y, veľkosť_v_rozmere_x
+	, veľkosť_v_rozmere_y, farba, parametry_na_zavolanie_funkcie)
+
+		Classa určená na vykreslovanie tlačítka ktoré má text a volá funkciu po tom čo je kliknuté. Príklad vytvorenia objektu tejto classsy:
+		a=Button("Ahoj",hlavna_plocha,print,400,290,50,50,'red',"Ahoj")
+		Button sám od seba nedetekuje kliknutie a ani sa nevykreslí, má nato metódy vykresli() a detekuj_klik().
+
+		vykresli() vykreslí tlačítko na plochu, nepríjma žiadne parametre.
+		detekuj_klik() zavolá funkcia v prípade že globálny zoznam eventy má na nultej pozícii hodnotu True a myška je na tlačítku
+		
+		Počas toho ako tlačítko vzniká môže zmeniť veľkosť tak aby sa do nej vošiel text (Pre príliš krátke texty to nefunguje)
+		
+		Každý Button si pamätá x, y, x_size, y_size,plocha, farba, funkcia, text,parametry	
+	Cube: Cube(x, y, z, veľkosť_kocky, fill_bool, farba_naplne, farba_okrajov, pygame_plocha, alpha)
+
+		Classa reprezentujúca kocky z ktorých sa skladá hra.
+		Má metódy:
+			get_new_points(uhol):
+				Funkcia vráti súradnice bodov v 2D reprezentácii v závislosti od uhlu.
+				2d_x= x-y*0.5
+				2d_y= z+y*0.5 -sin(uhol)*100
+			fill_change()
+				Zmení či má byť kocka vyplnená alebo nie.
+			color_change(farba)
+				Zmení výplň kocky na farbu.
+			get_image(uhol)
+				Vykreslí do pygame plochy 2D reprezentáciu kocky v závislosti od uhla.
+			get_rank(uhol)
+				Vráti "hodnosť" kocky v závislosti od uhla, určené na zistenie v akóm poradí sa kocky majú vykresliť.
+		Cube si pamätá x, y, z, size, fill, color, plocha, outline, points. Pričom points sú pozície vrcholov kocky.
+
+
+Program obsahuje funkcie:
+	nic: nic(prazdne)
+
+		Funkcia vráci 0. Určená na vytváranie tlačítok bez volania podstatnéj funkcie po kliknutí.
+	
+	vyber: vyber(čo)
+
+		Funkcia zmení hodnotu globalnej premennéj selected na čo[0].
+
+	difficulty_2: difficulty_2(pygame_plocha, perióda)
+		
+		Funkcia ktorá obsahuje game loopu verzie hry kde sa hadík hýbe každých zopár framov, určených periódov. Hra sa zobrazuje do pygame plochy.
+		Na vykreslenie hry používa classu Cube a na zobrazovanie textu classu Button. Classu Button taktiež využíva pri vytvorení tlačítka na reset.
+		
+		Game loopa taktiež updatuje globálnu premennú eventy na nultej pozícii na True ak je ľavé tľačítko myši stlačené a na False v opačnóm prípade.
+		Game loopa taktiež kontroluje stlačenia tlačítok W,A,S,D,Q,E,X,P na určenie pohybu hadíka a zastavenie hry či rotácie hernej plochy.
+		Game loopa taktiež kontroluje či nebolo pokúsené zatvorenie okna hry, a ak áno tak ho zatvorí a ukončí program.
+	
+		V prípade ukončenia hry prehrou či výhrou hra čaká na stlačenie tlačítka pre reset po ktorého kliknutí sa zavolá funkcia loopa.
+
+		Funkcia nevracia žiadnu hodnotu.
+
+	difficulty_1: difficulty_1(pygame_plocha)
+
+		Funkcia ktorá obsahuje game loopu verzie hry kde sa hadík hýbe len vtedy keď dostane input z klávesnice. Hra sa zobrazuje do pygame plochy.
+		Na vykreslenie hry používa classu Cube a na zobrazovanie textu classu Button. Classu Button taktiež využíva pri vytvorení tlačítka na reset.
+		
+		Game loopa taktiež updatuje globálnu premennú eventy na nultej pozícii na True ak je ľavé tľačítko myši stlačené a na False v opačnóm prípade.
+		Game loopa taktiež kontroluje stlačenia tlačítok W,A,S,D,Q,E,X na určenie pohybu hadíka a zastavenie rotácie hernej plochy.
+		Game loopa taktiež kontroluje či nebolo pokúsené zatvorenie okna hry, a ak áno tak ho zatvorí a ukončí program.
+	
+		V prípade ukončenia hry prehrou či výhrou hra čaká na stlačenie tlačítka pre reset po ktorého kliknutí sa zavolá funkcia loopa.
+
+		Funkcia nevracia žiadnu hodnotu.	
+
+	loopa(pygame_plocha)
+
+		Funkcia vykreslí do pygame plochy 3 tlačítka určené na zmenu globálnej premennej selected na 1,2 alebo 3. Taktiež vykresluje tlačítka ktoré majú len text.
+
+		Obsahuje loopu ktorá mení globálnu premennú eventy[0] podľa kliknutia ľavého tlačítka myši. Ak je selected[0]!=0 tak sa loopa ukončí a zavolá difficulty_1(pygame_plocha) ak selected[0]==1,
+		ak je to rovné 2 tak zavolá difficulty_2(pygame_plocha,40) a ak sa to rovná 3 tak zavolá difficulty_2(pygame_plocha,20).
+
+		Funkcia nevracia žiadnu hodnotu.
+Po spustení pythonového programu sa vyrvorí pygame plocha screen, následne je zavolané loopa(screen).
+		
+
+
