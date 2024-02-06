@@ -1,5 +1,33 @@
 Program je písaný v Pythone, cely kód je v súbore "kod.py". Využité knižnice sú pygame, math, numpy, random a collections.
 
+Program by mal počas celého behu využívať práve jeden pygame display, ďalej taktiež nazvaný screen, plátno či okno.
+
+Počas skoro celého behu programu by mal byť program v nejakej loope ktorá prijíma a spracuváva inputy a vykresluje hraciu plochu. V prípade že program
+v takejto loope práve nie je tak by sa tam mal za krátky čas dostať. Za pomoci pygame.time.Clock().tick(60) v každej iterácii loopi limitujeme maximálny 
+framerate na 60FPS. Tieto loopy môžeme volať game loopy. Každá game loopa je obsiahnutá v funkcii. Program by nemal generovať vnorené game loopy.
+
+Všetky prvky vykreslené na hracej plochy sú buď to vykreslené classou Cube, Button alebo príkazom fill z pygame.
+
+Program po spustení vytvorí pygame display rozmerou 1280 na 800 pixelov z názvom "3D Hadik". Následne zavolá funkciu loopa() ktorá slúži ako game loopa 
+vykresľujúca menu. V tomto menu na základe stlačenia tlačítok môžu zavolať funkcie rôznych módov hry. Ak by sa mala zavolať funkcia módu hry tak najskôr skončí 
+loopa funkcie loopa(). Resetom hry sa následne myslí ukončenie momentálnej game loopy a zavolanie funkcia loopa().
+
+Game loopy vykreslujú všetky objekty class Cube a Button iterovaním cez zozname v ktorom sú uložené.
+
+Funkcie módov hry obsahujú nastavenie parametrov hry a game loopy tejto hry, v tejto game loope dochádza k vykreslovaniu objektov a výpočtom týkajúcich sa hry.
+
+Momentálne existujú dve funkcie módov, difficulty_1 a difficulty_2 pričom difficulty_2 príjma okrem parametru plochy na ktorú sa má hra vykreslovať aj parameter
+určujúcich po koľkých iteráciach sa má pohnúť hadík.
+
+Pozície sú indexované od nuly.
+Pozícia hadíka je v oboch módoch uložená aj ako pole o troch prvkoch, [X,Y,Z], aj ako samotné číslo v tvare X+Y*6+Z*36 pričom hra sa odohráva v 6x6x6 kocke.
+Pozícia žrádla sa taktiež ukladá oboma spôsobmi.
+Chvost hadíka je uložený ako deque do ktorej idú pozície chvosta uložené len ako samotné číslo.
+Informacie o obsadenosti hracej plochy sú v numpy poli o veľkosti 216 (6^3) kde je pozícia X,Y,Z uložená na X+Y*6+Z*36.
+Informacie o objektoch classy Cube sú v pythonovskóm zozname indexovanom rovnako.
+Graficky sa hadík,chvost a žrádlo zobrazuje zmenou farby a nastavenia výplne Cube na pozícii na ktorej sú.
+
+
 Program obsahuje classy:
 
 	Button: Button(text_tlačítka, pygame_plocha_na_ktorú_sa_má_vykresliť, funkcia_na_zavolanie_po_stlačení, pozícia_x, pozícia_y, veľkosť_v_rozmere_x
@@ -30,7 +58,7 @@ Program obsahuje classy:
 			get_image(uhol)
 				Vykreslí do pygame plochy 2D reprezentáciu kocky v závislosti od uhla.
 			get_rank(uhol)
-				Vráti "hodnosť" kocky v závislosti od uhla, určené na zistenie v akóm poradí sa kocky majú vykresliť.
+				Vráti "hodnosť" kocky v závislosti od uhla, určené na zistenie v akom poradí sa kocky majú vykresliť.
 		Cube si pamätá x, y, z, size, fill, color, plocha, outline, points. Pričom points sú pozície vrcholov kocky.
 
 
@@ -41,7 +69,7 @@ Program obsahuje funkcie:
 	
 	vyber: vyber(čo)
 
-		Funkcia zmení hodnotu globalnej premennéj selected na čo[0].
+		Funkcia zmení hodnotu globalnej premennej selected na čo[0].
 
 	difficulty_2: difficulty_2(pygame_plocha, perióda)
 		
@@ -71,13 +99,12 @@ Program obsahuje funkcie:
 
 	loopa(pygame_plocha)
 
-		Funkcia vykreslí do pygame plochy 3 tlačítka určené na zmenu globálnej premennej selected na 1,2 alebo 3. Taktiež vykresluje tlačítka ktoré majú len text.
+		Funkcia vykreslí do pygame plochy 3 tlačítka určené na zmenu globálnej premennej selected na 1,2 alebo 3. Taktiež vykresluje tlačítka ktoré
+		majú len text.
 
-		Obsahuje loopu ktorá mení globálnu premennú eventy[0] podľa kliknutia ľavého tlačítka myši. Ak je selected[0]!=0 tak sa loopa ukončí a zavolá difficulty_1(pygame_plocha) ak selected[0]==1,
-		ak je to rovné 2 tak zavolá difficulty_2(pygame_plocha,40) a ak sa to rovná 3 tak zavolá difficulty_2(pygame_plocha,20).
+		Obsahuje loopu ktorá mení globálnu premennú eventy[0] podľa kliknutia ľavého tlačítka myši. Ak je selected[0]!=0 tak sa loopa ukončí a zavolá 			difficulty_1(pygame_plocha) ak selected[0]==1, ak je to rovné 2 tak zavolá difficulty_2(pygame_plocha,40) a ak sa to rovná 3 tak zavolá 			difficulty_2(pygame_plocha,20).
 
 		Funkcia nevracia žiadnu hodnotu.
-Po spustení pythonového programu sa vyrvorí pygame plocha screen, následne je zavolané loopa(screen).
 		
 
 
