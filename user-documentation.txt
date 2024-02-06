@@ -1,7 +1,8 @@
 3D implementácia hry hadík.
 
-Hra sa spustí spustením pythonovského súboru kod.py v prípade že máte na počítači python a potrebné knižnice. Hra sa taktiež dá spustiť spustenim kod.exe ktorý sa dá sprístupniť extrahovaním "dist.rar" a následne môže byť kod.exe najedené v dist/kod.
-Toto bolo vytvorené pyinstallerom.
+Hra sa spustí spustením pythonovského súboru "kod.py" v prípade že máte na počítači python a potrebné knižnice. Tie sú pygame a numpy, linky na stránky obsahujúce aj inštrukcie
+k tomu ako ich stiahniť najdete v subore "zdroje.txt". Hra sa taktiež dá spustiť spustenim "kod.exe" ktorý sa dá sprístupniť extrahovaním "dist.rar" a následne môže byť "kod.exe"
+najedené v dist/kod. Toto bolo vytvorené pyinstallerom.
 Po spustení pythonového súboru alebo kod.exe sa zobrazí plocha výberu obtiažnosit.
 
 V ploche výberi obtiažnosti je možné ľavím klikom na jednu z troch obtiažností spustiť samotnú hru.
